@@ -8,15 +8,15 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="container">
+    <div class="card">
         <section class="form">
-            <p>
-                <input type="number" name="compra-fe" id="compra-fe" value="1" /> FE
-                <input type="number" name="compra-insumo" id="compra-insumo" />
+            <p class="form__grupo">
+                <input type="number" class="input input--fe" name="compra-fe" id="compra-fe" value="1" /> <span class="label label--fe">FE</span>
+                <input type="number" class="input" name="compra-insumo" id="compra-insumo" /> <span class="label label--currency">Currency</span>
             </p>
-            <p>
-                <input type="number" name="venda-insumo" id="venda-insumo" value="99" />
-                <input type="number" name="venda-fe" id="venda-fe" /> FE
+            <p class="form__grupo">
+                <input type="number" class="input" name="venda-insumo" id="venda-insumo" value="99" /> <span class="label label--currency">Currency</span>
+                <input type="number" class="input input--fe" name="venda-fe" id="venda-fe" /> <span class="label label--fe">FE</span>
             </p>
         </section>
         <section class="resultado">

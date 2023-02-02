@@ -20,6 +20,11 @@ img {
 :root {
   font-family: "Roboto", sans-serif;
   font-weight: 300;
+  --margem: 1rem;
+  --raio: 5em;
+  --cor1: rgb(111, 111, 111);
+  --espessura: 3px;
+  --borda: var(--espessura) solid var(--cor1);
 }
 
 body {
@@ -28,11 +33,78 @@ body {
   min-height: 100vh;
 }
 
-.container {
-  margin: 2rem;
-  padding: 2rem;
+.resultado, .form, .card {
+  margin: var(--margem);
+  padding: var(--margem);
+}
+
+.card {
   border-radius: 25px;
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.15);
+}
+
+.form {
+  --font-size: 1.25em;
+}
+.form__grupo {
+  border: var(--borda);
+  border-radius: var(--raio);
+  line-height: 1;
+  display: flex;
+  margin-bottom: var(--margem);
+  justify-content: flex-end;
+}
+.form__grupo:last-child {
+  margin-bottom: 0;
+}
+
+.input {
+  background-color: transparent;
+  border: 0;
+  font-weight: 600;
+  font-size: var(--font-size);
+  padding: calc(var(--margem) / 2);
+  border-radius: var(--raio);
+  text-align: right;
+  padding-right: 0;
+}
+.input--fe {
+  background-color: var(--cor1);
+  color: white;
+  padding-right: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.label {
+  font-size: var(--font-size);
+  font-weight: 300;
+  padding: calc(var(--margem) / 2);
+  padding-left: 0;
+  padding-left: 0;
+}
+.label--fe {
+  background-color: var(--cor1);
+  border-radius: 0 var(--raio) var(--raio) 0;
+  color: white;
+}
+.resultado {
+  position: relative;
+  border-top: var(--borda);
+}
+.resultado::after {
+  --tamanho: 1em;
+  content: "";
+  position: absolute;
+  border: var(--borda);
+  outline: var(--espessura) solid white;
+  background-color: white;
+  width: 1em;
+  height: 1em;
+  margin-left: calc(var(--margem) * -1);
+  top: calc(var(--espessura) / 2 * -1);
+  left: 50%;
+  transform: translateY(-50%) rotate(45deg);
 }
 
 /*# sourceMappingURL=style.css.map */
