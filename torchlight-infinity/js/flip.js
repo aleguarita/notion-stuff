@@ -24,24 +24,51 @@ class Flip {
         this.inputVendaFe = document.getElementById('venda-fe')
         this.inputCompraInsumo = document.getElementById('compra-insumo')
         this.inputVendaInsumo = document.getElementById('venda-insumo')
-        this.resultado = document.querySelector('.resultado')
+        this.areaResultado = document.querySelector('.resultado')
 
-        this.testeValores()
+        // valores iniciais
+        this.compraFe = 1
+        this.compraInsumo = 30
+        this.vendaFe = 10
+        this.vendaInsumo = 99
+        this.valorInsumo = this.calculaUnitario(this.vendaFe, this.vendaInsumo)
+        this.valorFe = this.calculaUnitario(this.vendaInsumo, this.vendaFe)
+
+        // aplica os valores no HTML
+        this.inputCompraFe.value = this.compraFe
+        this.inputCompraInsumo.value = this.compraInsumo
+        this.inputVendaFe.value = this.vendaFe
+        this.inputVendaInsumo.value = this.vendaInsumo
+
+        // aplica funções
+        this.calculaCompra()
+        this.calculaVenda()
     }
 
     // retorna o valor calculando com a taxa
-    calculaTaxa = (valor) => valor / 8
+    calculaTaxa = (valor) => valor - valor / 8
 
-    // retorna o valor por FE
-    calculaPorFe = (currency, fe) => currency / fe
+    // retorna quanto vale a unidade
+    calculaUnitario = (qtd, unidade) => qtd / unidade 
+    
 
-    testeValores() {
-        let compra = 30
-        let venda = 6
-
-        console.log(`comprado ${compra} itens por 1 FE e vendendo 99 por ${venda}`)
-        console.log(`o valor da venda é de ${this.calculaPorFe(99, venda)}`)
+    // calcula a quantidade comprada dinamicamente, subtraindo a taxa
+    calculaCompra() {
+        this.inputCompraInsumo.addEventListener('input', () => {
+            this.compraInsumo = this.calculaTaxa(Number(this.inputCompraInsumo.value))
+        })
     }
+
+    // calcula a quantidade de FE recebida, aplicando a taxa
+    calculaVenda() {
+        this.inputVendaFe.addEventListener('input', () => {
+            this.vendaFe = this.calculaTaxa(Number(this.inputVendaFe.value))
+        })
+    }
+
+
 }
 
-new Flip
+// new Flip
+let checaResultado = new Flip
+console.error('Apagar depois a variável checaResultado e descomentar a de cima')
