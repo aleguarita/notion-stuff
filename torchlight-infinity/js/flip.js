@@ -24,15 +24,19 @@ class Flip {
         this.inputVendaFe = document.getElementById('venda-fe')
         this.inputCompraInsumo = document.getElementById('compra-insumo')
         this.inputVendaInsumo = document.getElementById('venda-insumo')
-        this.areaResultado = document.querySelector('.resultado')
 
+        this.textoInsumo = document.getElementById('compraInsumoTexto')
+        this.textoFeCompra = document.getElementById('compraFeTexto')
+        this.textoUnidadeCompra = document.getElementById('insumoUnitarioCompraTexto')
+        this.textoComprarVender = document.getElementById('comprarParaVenderTexto')
+        this.textoVendaFe = document.getElementById('vendaFeTexto')
+        this.textoLucro = document.getElementById('lucroTexto')
+        
         // valores iniciais
         this.compraFe = 1
         this.compraInsumo = 30
-        this.vendaFe = 10
+        this.vendaFe = 5
         this.vendaInsumo = 99
-        this.valorInsumo = this.calculaUnitario(this.vendaFe, this.vendaInsumo)
-        this.valorFe = this.calculaUnitario(this.vendaInsumo, this.vendaFe)
 
         // aplica os valores no HTML
         this.inputCompraFe.value = this.compraFe
@@ -43,20 +47,36 @@ class Flip {
         // aplica funções
         this.calculaCompra()
         this.calculaVenda()
+
+        // insere os htmls iniciais
+        this.textoInsumo.innerHTML = Math.floor(this.calculaTaxa(Number(this.inputCompraInsumo.value)))
+        this.textoFeCompra.innerHTML = this.inputCompraFe.value
+        this.textoUnidadeCompra.innerHTML = this.calculaUnitario(this.compraFe, this.calculaTaxa(Number(this.compraInsumo))).toFixed(3)
+
     }
 
     // retorna o valor calculando com a taxa
     calculaTaxa = (valor) => valor - valor / 8
 
     // retorna quanto vale a unidade
-    calculaUnitario = (qtd, unidade) => qtd / unidade 
-    
+    calculaUnitario = (qtd, unidade) => qtd / unidade
 
+    // calcula todos os modificadores
+    aplicaValores() {
+        // variáveis de número
+        this.compraInsumo = this.calculaTaxa(Number(this.inputCompraInsumo.value))
+        this.compraFe = this.inputCompraFe.value
+
+        // variáveis de texto
+        this.textoInsumo.innerHTML = Math.floor(this.compraInsumo)
+        this.textoUnidadeCompra.innerHTML = this.calculaUnitario(this.compraFe, this.calculaTaxa(Number(this.compraInsumo))).toFixed(3)
+        this.textoFeCompra.innerHTML = this.compraFe
+    }
+    
     // calcula a quantidade comprada dinamicamente, subtraindo a taxa
     calculaCompra() {
-        this.inputCompraInsumo.addEventListener('input', () => {
-            this.compraInsumo = this.calculaTaxa(Number(this.inputCompraInsumo.value))
-        })
+        this.inputCompraInsumo.addEventListener('input', () => this.aplicaValores())
+        this.inputCompraFe.addEventListener('input', () => this.aplicaValores())
     }
 
     // calcula a quantidade de FE recebida, aplicando a taxa
@@ -67,8 +87,7 @@ class Flip {
     }
 
 
+
 }
 
-// new Flip
-let checaResultado = new Flip
-console.error('Apagar depois a variável checaResultado e descomentar a de cima')
+new Flip

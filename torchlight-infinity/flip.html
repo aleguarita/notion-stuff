@@ -12,16 +12,21 @@
         <section class="form">
             <p class="form__grupo">
                 <input type="number" class="input input--fe" name="compra-fe" id="compra-fe" value="1" /> <span class="label label--fe">FE</span>
-                <input type="number" class="input" name="compra-insumo" id="compra-insumo" /> <span class="label label--currency">Currency</span>
+                <input type="number" class="input" name="compra-insumo" id="compra-insumo" /> <span class="label label--Insumo">Insumos</span>
             </p>
             <p class="form__grupo">
-                <input type="number" class="input" name="venda-insumo" id="venda-insumo" value="99" /> <span class="label label--currency">Currency</span>
+                <input type="number" class="input" name="venda-insumo" id="venda-insumo" value="99" /> <span class="label label--Insumo">Insumos</span>
                 <input type="number" class="input input--fe" name="venda-fe" id="venda-fe" /> <span class="label label--fe">FE</span>
             </p>
         </section>
-        <section class="resultado">
-            resultado
-        </section>
+
+        <footer class="resultado">
+            <div class="compra">
+                <p>Você está recebendo <span class="destaque" id="compraInsumoTexto"></span> insumos por <span id="compraFeTexto"></span> FE (valor unitário: <span class="destaque" id="insumoUnitarioCompraTexto"></span>)</p>
+                <p>É preciso fazer <span class="destaque" id="comprarParaVenderTexto"></span> vezes essa compra para vender <span id="vendaFeTexto"></span></p>
+                <p>Seu lucro por unidade de Insumo vendido é de <span class="destaque" id="lucroTexto"></span></p>
+            </div>
+        </footer>
     </div>
 </body>
 </html>
